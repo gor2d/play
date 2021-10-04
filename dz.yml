@@ -1,0 +1,68 @@
+---
+- name: install docker
+  hosts: all
+  become: yes
+
+  tasks:
+
+  - name: install docker !!!!!!!!!!!!!
+    apt:
+      name: docker.io
+      state: present
+
+#  - name: add file index.html !!!!!!!!!!!!!!!!! 
+#    copy:
+#      src: index.html
+#      dest: /var/www/html
+
+  - name: service started docker !!!!!!!!!!!!!!!!!
+    service:
+      name: docker
+      state: started
+
+- name: add Dockerfile on slave host!!!
+  hosts: install
+  become: yes
+
+  tasks:
+
+  - name: add docker file!!!
+    copy:
+      src: /home/smn/playbook/install/Dockerfile
+      dest: /opt/
+
+- name: add Dockerfile on slave host!!!
+  hosts: prod
+  become: yes
+
+  tasks:
+
+  - name: add docker file!!!
+    copy:
+      src: /home/smn/playbook/prod/Dockerfile
+      dest: /opt/
+
+
+
+      
+
+
+
+
+#- name: install db !!!!!!!!!!!!!!!
+#  hosts: db
+#  become: yes
+
+#  tasks:
+  
+#  - name: install postgres !!!!!!!!!!!!!!!!!
+#    apt:
+#      name: postgresql
+#      state: present
+
+#  - name: service started postges !!!!!!!!!!!!!
+#    service:
+#      name: postgresql
+#      state: started
+
+
